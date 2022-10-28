@@ -11,11 +11,14 @@ int main() {
 
     cityNameTree.insert(City("Beijing", 0, 3));
 
-    cityNameTree.remove("Shanghai");
+    cityNameTree.insert(City("Tianjing", 0, 1));
+
+    cityNameTree.remove(COOR(0, 0));
 
     cityNameTree.print(cout);
     City city1 = cityNameTree.find("Beijing");
 
+    cityNameTree.printCityWithinDistance(1, 1, 2, cout);
 
     return 0;
 }

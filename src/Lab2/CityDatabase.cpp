@@ -22,9 +22,9 @@ bool COOR::operator <(const COOR &rhs) const {
 }
 
 /** City Struct. */
-double City::getDistance(const City &lhs, const City &rhs) {
-    double dx = lhs.position.x - rhs.position.x;
-    double dy = lhs.position.y - rhs.position.y;
+double COOR::getDistance(const COOR & lhs, const COOR & rhs) {
+    double dx = lhs.x - rhs.x;
+    double dy = lhs.y - rhs.y;
 
     return std::sqrt( dx * dx + dy * dy);
 }
@@ -123,5 +123,19 @@ const City & CityNameTree::find(const COOR &position) {
     return target->data;
 }
 
+void CityNameTree::printCityByDistance(const COOR &position, double distance, BinaryNode * t, std::ostream &out) {
+    if (t == nullptr)
+        return;
+    printCityByDistance(position, distance, t->left, out);
+    if (COOR::getDistance(position, t->data.position) <= distance)
+        out << t->data;
+    printCityByDistance(position, distance, t->right, out);
+}
 
+void CityNameTree::printCityWithinDistance(const COOR & position, double distance, std::ostream & out) {
+    printCityByDistance(position, distance, root_, out);
+}
 
+void CityNameTree::printCityWithinDistance(double x, double y, double distance, std::ostream & out) {
+    printCityWithinDistance(COOR(x, y), distance, out);
+}

@@ -27,6 +27,8 @@ struct COOR {
     bool operator >(const COOR & rhs) const;
 
     bool operator <(const COOR & rhs) const;
+
+    static double getDistance(const COOR & lhs, const COOR & rhs);
 };
 
 struct City {
@@ -51,10 +53,8 @@ struct City {
     bool operator !=(const City & rhs) const;
 
     friend std::ostream & operator <<(std::ostream & out, const City & rhs);
-
-    /** Get the distance of two city.*/
-    static double getDistance(const City & lhs, const City & rhs);
 };
+
 
 static const City NULL_CITY = City("", 0 , 0);
 
@@ -79,6 +79,10 @@ public:
 
     const City & find(const COOR & position);
 
+    void printCityWithinDistance(double x, double y, double distance, std::ostream & out);
+
+    void printCityWithinDistance(const COOR & position, double distance, std::ostream & out);
+
 private:
     // Internal help functions.
 
@@ -95,6 +99,13 @@ private:
      * @param target is the City with the specified name and unknown position.
      * @return return a node containing the whole information of the City with specified name. */
     BinaryNode * findByName(const City & target, BinaryNode * t);
+
+    /**
+     * Print cities within a certain distance of the position.
+     * @param position origin
+     * @param distance the maximum distance.
+     */
+    void printCityByDistance(const COOR & position, double distance, BinaryNode * t, std::ostream & out);
 };
 
 

@@ -3,8 +3,11 @@ project(Labs)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CITYDATABASE src/Lab2/CityDatabase.cpp)
+
 include_directories(src)
 add_executable(Lab1 main.cpp
-                    src/BigInt.cpp
+                   # src/Lab1/BigInt.cpp
                    # src/SLListTest.cpp
+                    ${CITYDATABASE}
         )

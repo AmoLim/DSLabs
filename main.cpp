@@ -1,15 +1,21 @@
+
+#include "Lab2/CityDatabase.h"
 #include <iostream>
-#include "BigInt.h"
+#include <chrono>
 
+using namespace std;
 int main() {
-    BigInt int1(10);
-    BigInt int2("-1");
+    CityNameTree cityNameTree;
 
-    int1. multiply(int2);
+    cityNameTree.insert(City("Shanghai", 0, 0));
 
-    int1.print(std::cout);
+    cityNameTree.insert(City("Beijing", 0, 3));
 
-    printf("\n");
+    cityNameTree.remove("Shanghai");
+
+    cityNameTree.print(cout);
+    City city1 = cityNameTree.find("Beijing");
+
 
     return 0;
 }
